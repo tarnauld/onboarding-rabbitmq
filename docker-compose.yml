@@ -1,0 +1,15 @@
+services:
+  service-a:
+    build: ./service-A
+    ports:
+      - '3000:3000'
+    networks:
+      - app-tier
+  service-b:
+    build: ./service-B
+    networks:
+      - app-tier
+      
+networks:
+  app-tier:
+    driver: bridge
