@@ -1,8 +1,9 @@
-FROM node:18
+FROM node:latest
 ENV PORT="3000"
-COPY . /usr/src/onboarding-kafka
-WORKDIR /usr/src/onboarding-kafka
-EXPOSE 3001
+COPY . /usr/src/onboarding-rabbitmq
+WORKDIR /usr/src/onboarding-rabbitmq
+EXPOSE 3000
 RUN npm i
+RUN npm i -g ts-node
 RUN npm run build
-CMD ["node", "dist/index.js"]
+CMD ["ts-node", "-r", "tsconfig-paths/register", "dist/index.js"]
